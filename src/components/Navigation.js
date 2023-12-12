@@ -3,10 +3,13 @@ import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 const Navigation = () =>{
+    const reload = () =>{
+        window.location.reload();
+    }
     return (
-        <Navbar expand="lg" className="bg-body-tertiary">
+        <Navbar bg="dark" data-bs-theme="dark">
             <Container style = {{display: "flex", justifyContent: "center"}}>
-                <Navbar.Brand href="#home" style = {{fontFamily: 'Arial, sans-serif'}}><b>Hwei Trainer </b></Navbar.Brand>
+                <Navbar.Brand href="#home" onClick={reload} style = {{fontFamily: 'Arial, sans-serif', fontSize: "40px"}}><b>Hwei Trainer </b></Navbar.Brand>
             </Container>
         </Navbar>
     )
