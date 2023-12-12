@@ -1,16 +1,16 @@
 {
   "files": {
     "main.css": "/Hwei-Trainer/static/css/main.3d72d97e.css",
-    "main.js": "/Hwei-Trainer/static/js/main.81de768b.js",
+    "main.js": "/Hwei-Trainer/static/js/main.be911925.js",
     "static/js/787.97445fa6.chunk.js": "/Hwei-Trainer/static/js/787.97445fa6.chunk.js",
     "static/media/logo.svg": "/Hwei-Trainer/static/media/logo.6ce24c58023cc2f8fd88fe9d219db6c6.svg",
     "index.html": "/Hwei-Trainer/index.html",
     "main.3d72d97e.css.map": "/Hwei-Trainer/static/css/main.3d72d97e.css.map",
-    "main.81de768b.js.map": "/Hwei-Trainer/static/js/main.81de768b.js.map",
+    "main.be911925.js.map": "/Hwei-Trainer/static/js/main.be911925.js.map",
     "787.97445fa6.chunk.js.map": "/Hwei-Trainer/static/js/787.97445fa6.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.3d72d97e.css",
-    "static/js/main.81de768b.js"
+    "static/js/main.be911925.js"
   ]
 }
