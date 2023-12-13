@@ -3,8 +3,9 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import { useState, useEffect } from 'react';
 import "./Trainer.css";
+import { Button } from 'react-bootstrap';
 
-const Trainer = ({time}) =>{
+const Trainer = ({time, setTime, score, setScore, setIntervalID}) =>{
     const prompts = {
         "Karma Q": ["Q", "Q"],
         "Velkoz E": ["Q", "E"],
@@ -29,9 +30,6 @@ const Trainer = ({time}) =>{
 
     //index for comparison
     const [cursor, setCursor] = useState(0);
-
-    //score for current game
-    const [score, setScore] = useState(0);
 
     // correct feeback
     const [feedBackVis, setFeedBackVis] = useState(null);
@@ -112,6 +110,31 @@ const Trainer = ({time}) =>{
         }
     }, [curr_q, cursor])
 
+    const handleRestart = () =>{
+        //reset time to be 30
+        setTime(30);
+
+        // restore everything to defaults
+        setUserInputs(["__", "__"])
+
+        // start interval
+        const id = setInterval(()=>{
+            setTime(prev => Math.max(prev -=.05, 0));
+        }, 50);
+        
+        setIntervalID(id);
+
+        // reset score
+        setScore(0);
+
+        // remove feedback
+        setFeedBackVis(null);
+
+        //reset cursor
+        setCursor(0);
+
+    }
+
     return(    
         <Container>
             <Row>
@@ -120,18 +143,33 @@ const Trainer = ({time}) =>{
             <Row>
                 Score: {score}
             </Row>
-            <Row>
-                {curr_q}
-            </Row>
-            <Row>
-                <Col>
-                    {userInputs[0]}
-                </Col>
-                <Col>
-                    {userInputs[1]}
-                </Col>
-            </Row>
-            {feedBackVis !== null? feedBackVis? <Row style = {{color: "green"}}> That's Correct!</Row> : <Row className = {error? "error" : ""} style = {{color: "red"}}> That's Incorrect... Try Again</Row>: <></>}
+            {
+                time > 0?
+                <>
+                    <Row>
+                        {curr_q}
+                    </Row>
+                    <Row>
+                        <Col>
+                            {userInputs[0]}
+                        </Col>
+                        <Col>
+                            {userInputs[1]}
+                        </Col>
+                    </Row>
+                    {feedBackVis !== null? feedBackVis? <Row style = {{color: "green"}}> That's Correct!</Row> : <Row className = {error? "error" : ""} style = {{color: "red"}}> That's Incorrect... Try Again</Row>: <></>}
+                </>
+                :
+                <>
+                    <Row> 
+                        Game Over!
+                    </Row>
+                    <Row>
+                        <Button onClick = {handleRestart}>Play Again</Button>
+                    </Row>
+                </>
+            }
+           
         </Container>
       )
     

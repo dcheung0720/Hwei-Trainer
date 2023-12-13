@@ -11,6 +11,9 @@ const HomePage = () =>{
     const [time, setTime] = useState(10);
     const [intervalID, setIntervalID] = useState(null);
 
+    //score for current game
+    const [score, setScore] = useState(0);
+
     const handleHomePageVis = () =>{
         setHomePageVis((prev) => !prev);
 
@@ -48,7 +51,7 @@ const HomePage = () =>{
                 </Row>
             </Container>
             <div className = "trainer" style = {{opacity: HomePageVis? 0 : 1}}>
-                <Trainer time = {time}/>
+                <Trainer time = {time} setTime = {setTime} score = {score} setScore = {setScore} setIntervalID = {setIntervalID}/>
             </div>
         </div>
     )
