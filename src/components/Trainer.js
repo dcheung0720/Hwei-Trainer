@@ -5,7 +5,7 @@ import { useState, useEffect } from 'react';
 import "./Trainer.css";
 import { Button } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faClock, faStar } from '@fortawesome/free-solid-svg-icons';
+import { faClock, faStar, faRepeat, faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 
 
 
@@ -169,7 +169,8 @@ const Trainer = ({time, setTime, score, setScore, setIntervalID}) =>{
                         Game Over!
                     </Row>
                     <Row>
-                        <Button onClick = {handleRestart}>Play Again</Button>
+                        <Col><Button onClick = {()=> window.location.reload()}> <FontAwesomeIcon icon={faArrowLeft} />Return </Button></Col>
+                        <Col xs = {6}><Button style={{ width: "80px" }}  onClick = {handleRestart}>Restart <FontAwesomeIcon icon={faRepeat} /></Button></Col>
                     </Row>
                 </>
             }

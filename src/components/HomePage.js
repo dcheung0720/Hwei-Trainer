@@ -13,7 +13,7 @@ import { faCrown, faGamepad, faDumbbell, faPerson } from '@fortawesome/free-soli
 
 const HomePage = () =>{
     const [HomePageVis, setHomePageVis] = useState(true);
-    const [time, setTime] = useState(10);
+    const [time, setTime] = useState(30);
     const [intervalID, setIntervalID] = useState(null);
 
     //score for current game
