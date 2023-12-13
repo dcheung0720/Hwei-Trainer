@@ -17,7 +17,7 @@ const Trainer = () =>{
         "Slow root": ["E", "W"],
         "Group CC": ["E", "E"],
     }
-
+ 
     // current question
     const [curr_q, setCurr_q] = useState(null);
 
@@ -35,6 +35,9 @@ const Trainer = () =>{
 
     // correct feeback
     const [feedBackVis, setFeedBackVis] = useState(null);
+
+    // error for shake animations
+    const [error, setError] = useState(false);
 
     const randomizeIndex = () =>{
         const all_prompts = Object.keys(prompts);
@@ -87,11 +90,18 @@ const Trainer = () =>{
                 }
                 setCursor((cursor + 1)%2)
             }
+            // incorrect
             else{
                 setCursor(0);
                 setUserInputs(["__", "__"]);
 
                 setFeedBackVis(false);
+
+                //set error for shake animations
+                setError(true);
+                setTimeout(()=>{
+                    setError(false);
+                }, 500)
             }
         }
 
@@ -118,7 +128,7 @@ const Trainer = () =>{
                     {userInputs[1]}
                 </Col>
             </Row>
-            {feedBackVis !== null? feedBackVis? <Row> That's Correct!</Row> : <Row> That's Incorrect... Try Again</Row>: <></>}
+            {feedBackVis !== null? feedBackVis? <Row style = {{color: "green"}}> That's Correct!</Row> : <Row className = {error? "error" : ""} style = {{color: "red"}}> That's Incorrect... Try Again</Row>: <></>}
         </Container>
       )
     
