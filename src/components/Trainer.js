@@ -4,7 +4,7 @@ import Col from 'react-bootstrap/Col';
 import { useState, useEffect } from 'react';
 import "./Trainer.css";
 
-const Trainer = () =>{
+const Trainer = ({time}) =>{
     const prompts = {
         "Karma Q": ["Q", "Q"],
         "Velkoz E": ["Q", "E"],
@@ -114,6 +114,9 @@ const Trainer = () =>{
 
     return(    
         <Container>
+            <Row>
+                Timer: {time.toFixed(2)}
+            </Row>
             <Row>
                 Score: {score}
             </Row>

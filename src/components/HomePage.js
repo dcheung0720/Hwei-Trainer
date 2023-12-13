@@ -3,16 +3,30 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Button from 'react-bootstrap/Button';
 import Trainer from './Trainer';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import './HomePage.css'
 
 const HomePage = () =>{
     const [HomePageVis, setHomePageVis] = useState(true);
+    const [time, setTime] = useState(10);
+    const [intervalID, setIntervalID] = useState(null);
 
     const handleHomePageVis = () =>{
         setHomePageVis((prev) => !prev);
+
+        const id = setInterval(()=>{
+            setTime(prev => Math.max(prev -=.05, 0));
+        }, 50)
+        
+        setIntervalID(id);
+
     }
 
+    useEffect(()=>{
+        if(time <= 0){
+            clearInterval(intervalID);
+        }
+    }, [time, intervalID])
 
     return (<div>
             <Container style = {{opacity: HomePageVis? 1 : 0}}>
@@ -34,7 +48,7 @@ const HomePage = () =>{
                 </Row>
             </Container>
             <div className = "trainer" style = {{opacity: HomePageVis? 0 : 1}}>
-                <Trainer/>
+                <Trainer time = {time}/>
             </div>
         </div>
     )
