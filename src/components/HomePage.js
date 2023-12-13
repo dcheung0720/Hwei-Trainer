@@ -5,6 +5,11 @@ import Button from 'react-bootstrap/Button';
 import Trainer from './Trainer';
 import { useEffect, useState } from 'react';
 import './HomePage.css'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCrown, faGamepad, faDumbbell, faPerson } from '@fortawesome/free-solid-svg-icons';
+
+
+
 
 const HomePage = () =>{
     const [HomePageVis, setHomePageVis] = useState(true);
@@ -25,11 +30,23 @@ const HomePage = () =>{
 
     }
 
+    //game over
     useEffect(()=>{
         if(time <= 0){
             clearInterval(intervalID);
+
+            //determine high score
+            if(localStorage.getItem("hs") == null){
+                localStorage.setItem("hs", score);
+            }
+            else{
+                let maxScore = Math.max(localStorage.getItem("hs"), score);
+                localStorage.setItem("hs", maxScore);
+            }
+
         }
-    }, [time, intervalID])
+
+    }, [time, intervalID, score])
 
     return (<div>
             <Container style = {{opacity: HomePageVis? 1 : 0}}>
@@ -37,9 +54,10 @@ const HomePage = () =>{
                     <Container>
                         <Row>
                             <Col style = {{textAlign: "left"}}>
-                                <p> <b>Welcome to Hwei Trainer! </b> A Journey for Hwei Learners.</p>
-                                <p> <b>How to play: </b> Cast your ability based on the scenario.</p>
+                                <p> <b>Welcome to Hwei Trainer <FontAwesomeIcon icon={faDumbbell} style={{color: "#f4b301",}} />! </b> A Journey for Hwei Learners <FontAwesomeIcon icon={faPerson} style={{color: "#3ca527",}} />.</p>
+                                <p> <b>How to play <FontAwesomeIcon icon={faGamepad} style={{color: "#df0c0c",}} />: </b> Cast your ability based on the scenario.</p>
                                 <p> Example: "Fear one enemy away" - You would Press E, Q</p>
+                                <p> Highscore <FontAwesomeIcon icon={faCrown} style={{color: "#f7ef02",}} />: {localStorage.getItem("hs")}</p>
                             </Col>
                         </Row>
                     </Container>

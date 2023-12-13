@@ -4,6 +4,10 @@ import Col from 'react-bootstrap/Col';
 import { useState, useEffect } from 'react';
 import "./Trainer.css";
 import { Button } from 'react-bootstrap';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faClock, faStar } from '@fortawesome/free-solid-svg-icons';
+
+
 
 const Trainer = ({time, setTime, score, setScore, setIntervalID}) =>{
     const prompts = {
@@ -117,7 +121,7 @@ const Trainer = ({time, setTime, score, setScore, setIntervalID}) =>{
         // restore everything to defaults
         setUserInputs(["__", "__"])
 
-        // start interval
+        // start interval for time
         const id = setInterval(()=>{
             setTime(prev => Math.max(prev -=.05, 0));
         }, 50);
@@ -138,10 +142,10 @@ const Trainer = ({time, setTime, score, setScore, setIntervalID}) =>{
     return(    
         <Container>
             <Row>
-                Timer: {time.toFixed(2)}
+                <span>Timer <FontAwesomeIcon icon={faClock} />: {time.toFixed(2)}</span>
             </Row>
             <Row>
-                Score: {score}
+                <span>Score <FontAwesomeIcon icon={faStar} />: {score} </span>
             </Row>
             {
                 time > 0?
