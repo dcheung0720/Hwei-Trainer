@@ -16,6 +16,9 @@ const HomePage = () =>{
     const [time, setTime] = useState(30);
     const [intervalID, setIntervalID] = useState(null);
 
+    // correct feedback
+    const [feedBackVis, setFeedBackVis] = useState(null);
+
     //score for current game
     const [score, setScore] = useState(0);
 
@@ -28,6 +31,9 @@ const HomePage = () =>{
         
         setIntervalID(id);
 
+        // remove user inputs before game starts
+        setFeedBackVis(null);
+        setScore(0);
     }
 
     //game over
@@ -69,7 +75,7 @@ const HomePage = () =>{
                 </Row>
             </Container>
             <div className = "trainer" style = {{opacity: HomePageVis? 0 : 1}}>
-                <Trainer time = {time} setTime = {setTime} score = {score} setScore = {setScore} setIntervalID = {setIntervalID}/>
+                <Trainer time = {time} setTime = {setTime} score = {score} setScore = {setScore} setIntervalID = {setIntervalID} feedBackVis={feedBackVis} setFeedBackVis={setFeedBackVis}/>
             </div>
         </div>
     )

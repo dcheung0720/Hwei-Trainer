@@ -9,7 +9,7 @@ import { faClock, faStar, faRepeat, faArrowLeft } from '@fortawesome/free-solid-
 
 
 
-const Trainer = ({time, setTime, score, setScore, setIntervalID}) =>{
+const Trainer = ({time, setTime, score, setScore, setIntervalID, feedBackVis, setFeedBackVis}) =>{
     const prompts = {
         "Karma Q": ["Q", "Q"],
         "Velkoz E": ["Q", "E"],
@@ -34,9 +34,6 @@ const Trainer = ({time, setTime, score, setScore, setIntervalID}) =>{
 
     //index for comparison
     const [cursor, setCursor] = useState(0);
-
-    // correct feeback
-    const [feedBackVis, setFeedBackVis] = useState(null);
 
     // error for shake animations
     const [error, setError] = useState(false);
